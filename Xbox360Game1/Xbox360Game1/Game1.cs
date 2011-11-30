@@ -1,3 +1,12 @@
+// Up here are the using statements
+// they just make it so you don't need to type, say, 
+//
+// Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch;
+//
+// you just need to type
+//
+// SpriteBatch spriteBatch;
+// 
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,12 +28,17 @@ namespace Xbox360Game1
         // This is where your global variables are placed
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        SpriteFont font;
-        Color xcolor = Color.Black;
-        float x = 800 / 2;
-        float y = 480 / 2;
-        Vector2 mPosition = new Vector2(50, 50);
-        Texture2D mSpriteTexture;
+        
+        SpriteFont font;  // we need this for drawing text to screen (the "@" sign)
+        Color xcolor = Color.Black;  // we need this to color the text
+        
+        float x = 800 / 2;  // we need this to positon the text on the screen
+        float y = 480 / 2;  //  we could have gone with a Vector2, but we show
+                            // that style for the image drawing instead
+
+
+        Vector2 mPosition = new Vector2(50, 50); // this positions the image we draw
+        Texture2D mSpriteTexture;  // this holds the image that will be drawn
 
         public Game1()
         {
@@ -40,7 +54,6 @@ namespace Xbox360Game1
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
             base.Initialize();
         }
 
@@ -48,8 +61,6 @@ namespace Xbox360Game1
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
         /// </summary>
-        private Texture2D SpriteTexture;
-        private Rectangle TitleSafe;
         protected override void LoadContent()
         {
             // You load your game content here
@@ -66,7 +77,7 @@ namespace Xbox360Game1
 
  
             // This is our very first texture, we draw this image to the screen!!!
-            mSpriteTexture = this.Content.Load<Texture2D>("ArmosBrown1");
+            mSpriteTexture = this.Content.Load<Texture2D>("ArmosBrown1");   // omit the .png extension here
             // You have to right click your project's Content node and choose...
             //   Add -> Existing Item -> Browse to your image file
         }
@@ -88,6 +99,7 @@ namespace Xbox360Game1
         protected override void Update(GameTime gameTime)
         {
             // Your update logic goes here
+            // That includes acting upond controller inputs
 
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
@@ -125,9 +137,11 @@ namespace Xbox360Game1
             GraphicsDevice.Clear(Color.CornflowerBlue); // this set's the background color
 
             // before you can draw with a spriteBatch, you must do .Begin()
-            spriteBatch.Begin(); 
-            
-            
+            spriteBatch.Begin();
+
+            spriteBatch.DrawString(font, "Hello XNA on XBOX", new Vector2(300, 45), Color.Black);
+
+            // This is where we draw the main character (an 'at' symbol)
             spriteBatch.DrawString(font, "@", new Vector2(x, y), xcolor);
 
 
