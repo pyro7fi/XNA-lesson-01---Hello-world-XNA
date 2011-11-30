@@ -142,7 +142,9 @@ namespace Xbox360Game1
             spriteBatch.DrawString(font, "Hello XNA on XBOX", new Vector2(300, 45), Color.Black);
 
             // This is where we draw the main character (an 'at' symbol)
-            spriteBatch.DrawString(font, "@", new Vector2(x, y), xcolor);
+            spriteBatch.DrawString(font, "@", new Vector2(x, y), xcolor);  // Notice we're creating a Vector2 object on the fly
+                                                                           // traditionally we would just create the Vector2 as
+                                                                           // a global variable
 
 
             // Here's where we draw the image
